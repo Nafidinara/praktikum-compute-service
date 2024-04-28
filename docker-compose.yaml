@@ -1,0 +1,27 @@
+services:
+  alta-mariadb:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: user
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "33006:3306"
+    networks:
+      - mynet
+
+  app:
+    build: .
+    ports:
+      - "5001:8080"
+    depends_on:
+      - alta-mariadb
+    networks:
+    - mynet
+    env_file: 
+    - .env
+
+networks:
+  mynet:
+    driver: "bridge"
