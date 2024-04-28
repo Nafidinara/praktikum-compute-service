@@ -10,7 +10,7 @@ RUN CGO_ENABLED=0 GOOS=linux
 
 RUN go build -o main .
 
-FROM gcr.io/distroless/base-debian12:1.0.0
+FROM gcr.io/distroless/base-debian12
 
 WORKDIR /root
 
